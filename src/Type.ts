@@ -3,3 +3,9 @@ export interface Colors {
   secondary: string;
   blue: string;
 }
+
+export interface Collection {
+  id: number;
+  name: string;
+  configuration_name: string;
+}
