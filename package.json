@@ -1,4 +1,5 @@
 {
+  "homepage": "https://fares1994.github.io/bloombloomtask",
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
@@ -16,6 +17,8 @@
     "web-vitals": "^2.1.2"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy":"gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -46,6 +49,7 @@
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "@types/styled-components": "^5.1.19",
+    "gh-pages": "^3.2.3",
     "typescript": "^4.5.4"
   }
 }
