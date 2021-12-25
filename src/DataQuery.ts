@@ -1,4 +1,4 @@
-import { Collection } from "./Type";
+import { Collection, GLassItem } from "./Type";
 
 interface PropsGetGlasses {
   page: number;
@@ -13,7 +13,8 @@ interface PropsGetGlasses {
     | "bright"
   )[];
   frameTypes: ("square" | "rectangle" | "round" | "cat-eye")[];
-  handleSetItems: (items: unknown[]) => void;
+  collection: "sunglasses" | "spectacles";
+  handleSetItems: (items: GLassItem[]) => void;
 }
 
 export const GetGlasses = async ({
@@ -22,8 +23,10 @@ export const GetGlasses = async ({
   limit,
   lensTypes,
   frameTypes,
+  collection,
   handleSetItems,
 }: PropsGetGlasses) => {
+  console.log(collection, "collection");
   const lensTypeFilter = lensTypes.map(
     (lensType) =>
       `&filters[glass_variant_frame_variant_colour_tag_configuration_names][]=${lensType}`
@@ -37,16 +40,14 @@ export const GetGlasses = async ({
     ...frameTypeFilter,
     `&filters[frame_variant_home_trial_available]=false`,
   ].join("");
+
   try {
     const data = await fetch(
-      `http://api.bloobloom.com/user/v1/sales_channels/website/collections/spectacles-${gender}/glasses?sort[type]=collection_relations_position&sort[order]=asc&filters[lens_variant_prescriptions][]=fashion&filters[lens_variant_types][]=classic&page[limit]=${limit}&page[number]=${page}${totalFilter}`
+      `http://api.bloobloom.com/user/v1/sales_channels/website/collections/${collection}-${gender}/glasses?sort[type]=collection_relations_position&sort[order]=asc&filters[lens_variant_prescriptions][]=fashion&filters[lens_variant_types][]=classic&page[limit]=${limit}&page[number]=${page}${totalFilter}`
     );
     const res = await data.json();
-    console.log(res, "resssss");
     await handleSetItems(res.glasses);
-    return console.log(res.glasses);
   } catch (error) {
-    console.log(error);
     return alert("Something went wrong, please refresh the page");
   }
 };
@@ -63,7 +64,6 @@ export const GetCollections = async ({
     const res = await data.json();
     await handleSetCollections(res.collections);
   } catch (error) {
-    console.log(error);
     return alert("Something went wrong, please refresh the page");
   }
 };
