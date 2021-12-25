@@ -160,6 +160,10 @@ const App = () => {
                 key={index}
                 order={index}
                 show={isShown}
+                onClick={() => {
+                  setIsShown(false);
+                  setSubMenu(undefined);
+                }}
               />
             ))}
           </SubMenu>
