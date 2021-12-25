@@ -29,8 +29,14 @@ const Wrapper = styled.div<{ middle: boolean; image: string }>`
   justify-content: center;
   align-items: flex-start;
   width: ${100 / 3 - 0.5}vw;
+  @media screen and (max-width: 1270px) {
+    width: ${100 / 3 - .8}vw;
+  }
   @media screen and (max-width: 900px) {
     width: ${48.8}vw;
+  }
+  @media screen and (max-width: 750px) {
+    width: ${48.4}vw;
   }
   @media screen and (max-width: 650px) {
     width: 100vw;

@@ -26,7 +26,6 @@ export const GetGlasses = async ({
   collection,
   handleSetItems,
 }: PropsGetGlasses) => {
-  console.log(collection, "collection");
   const lensTypeFilter = lensTypes.map(
     (lensType) =>
       `&filters[glass_variant_frame_variant_colour_tag_configuration_names][]=${lensType}`

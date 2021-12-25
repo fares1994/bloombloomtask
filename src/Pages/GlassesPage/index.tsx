@@ -39,8 +39,6 @@ const GlassesPage = () => {
   };
   const { gender, name, collection } = useParams();
   const handleSetItems = (fetchedItems: GLassItem[]) => {
-    console.log(fetchedItems, "fetchedItems");
-    console.log(page);
     if (page === 1) {
       setItems(fetchedItems);
     } else {
@@ -48,8 +46,6 @@ const GlassesPage = () => {
     }
   };
   const getCollection = useCallback(async () => {
-    console.log("hit");
-    console.log(gender);
 
     await GetGlasses({
       frameTypes,

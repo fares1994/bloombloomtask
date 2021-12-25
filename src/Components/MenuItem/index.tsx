@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { useNavigate } from "react-router-dom";
 interface Props {
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
+  onPress?: () => void;
   onClick?: () => void;
   title: string;
   arrow: boolean;
@@ -16,10 +17,13 @@ const MenuItem = ({
   onMouseLeave,
   arrow,
   order,
-  show,
+  onClick,
 }: Props) => {
   const navigate = useNavigate();
   const navigateToPage = () => {
+    if (onClick) {
+      return onClick();
+    }
     const titleSplit = title.split(" ");
     navigate(
       `glasses/${titleSplit[0].toLowerCase()}/${titleSplit[1].toLowerCase()}/${title.replace(
@@ -28,13 +32,18 @@ const MenuItem = ({
       )}`
     );
   };
+  const [show, setShow] = useState<boolean>(false);
+  useEffect(() => {
+    setTimeout(() => {
+      setShow(true);
+    }, (order + 1) * 500);
+  });
   return (
     <Wrapper
       onMouseEnter={() => (onMouseEnter ? onMouseEnter() : null)}
       onMouseLeave={() => (onMouseLeave ? onMouseLeave() : null)}
       onClick={navigateToPage}
       show={show}
-      time={order - 0.8}
     >
       <Title>{title.toUpperCase()}</Title>
       <Arrow shown={arrow} />
@@ -60,19 +69,18 @@ const fadeOut = keyframes`
     opacity: 1;
   }
 `;
-const Wrapper = styled.div<{ show: boolean; time: number }>`
+const Wrapper = styled.div<{ show: boolean }>`
   height: 20px;
   cursor: pointer;
   border-bottom: 0.2px solid ${({ theme }) => theme.secondery};
   padding: 12px 8px;
-  display: "flex";
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   visibility: ${(props) => (props.show ? "visible" : "hidden")};
-  animation: ${(props) => (props.show ? fadeOut : fadeIn)}
-    ${({ time }) => time}s step-end;
-  transition: visibility ${({ time }) => time}s step-end;
+  animation: ${(props) => (props.show ? fadeOut : fadeIn)} 0.4s ease-in;
+  transition: visibility 0.4s ease-in;
 `;
 const Title = styled.div``;
 const Arrow = styled.div<{ shown: boolean }>`
