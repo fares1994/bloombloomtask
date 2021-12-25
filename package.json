@@ -1,5 +1,5 @@
 {
-  "homepage": "https://fares1994.github.io/bloombloomtask",
+  "proxy": "https://bloombloomtask.herokuapp.com/",
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
