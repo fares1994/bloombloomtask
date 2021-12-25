@@ -175,7 +175,7 @@ const App = () => {
             <Route
               path="*"
               element={
-                <Navigate to="/glasses/spectacles/women/Spectacles-Men" />
+                <Navigate to="/glasses/spectacles/women/Spectacles-Women" />
               }
             />
           </Routes>
