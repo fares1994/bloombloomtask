@@ -176,6 +176,10 @@ const TitleWrapper = styled.div`
   font-weight: 700;
   align-items: center;
   line-height: 45px;
+  padding: 0px 4px;
+  @media screen and (max-width: 600px) {
+    line-height: 22px;
+  }
 `;
 const Fragment = styled.div`
   width: ${100 / 3}vw;
