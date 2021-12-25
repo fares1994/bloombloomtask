@@ -42,8 +42,7 @@ export const GetGlasses = async ({
 
   try {
     const data = await fetch(
-      `http://api.bloobloom.com/user/v1/sales_channels/website/collections/${collection}-${gender}/glasses?sort[type]=collection_relations_position&sort[order]=asc&filters[lens_variant_prescriptions][]=fashion&filters[lens_variant_types][]=classic&page[limit]=${limit}&page[number]=${page}${totalFilter}`,
-      { mode: "no-cors" }
+      `https://bloombloomproxy.herokuapp.com/http://api.bloobloom.com/user/v1/sales_channels/website/collections/${collection}-${gender}/glasses?sort[type]=collection_relations_position&sort[order]=asc&filters[lens_variant_prescriptions][]=fashion&filters[lens_variant_types][]=classic&page[limit]=${limit}&page[number]=${page}${totalFilter}`
     );
     const res = await data.json();
     await handleSetItems(res.glasses);
@@ -59,8 +58,7 @@ export const GetCollections = async ({
 }: PropsGetCollections) => {
   try {
     const data = await fetch(
-      "https://staging-api.bloobloom.com/user/v1/sales_channels/website/collections",
-      { mode: "no-cors" }
+      "https://bloombloomproxy.herokuapp.com/https://staging-api.bloobloom.com/user/v1/sales_channels/website/collections",
     );
     const res = await data.json();
     await handleSetCollections(res.collections);
