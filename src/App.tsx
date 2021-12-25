@@ -160,7 +160,7 @@ const App = () => {
                 key={index}
                 order={index}
                 show={isShown}
-                onClick={() => {
+                closeMenu={() => {
                   setIsShown(false);
                   setSubMenu(undefined);
                 }}

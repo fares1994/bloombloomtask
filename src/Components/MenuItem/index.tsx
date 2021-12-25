@@ -10,6 +10,7 @@ interface Props {
   arrow: boolean;
   order: number;
   show: boolean;
+  closeMenu?: () => void;
 }
 const MenuItem = ({
   title,
@@ -18,6 +19,7 @@ const MenuItem = ({
   arrow,
   order,
   onClick,
+  closeMenu
 }: Props) => {
   const navigate = useNavigate();
   const navigateToPage = () => {
@@ -31,6 +33,7 @@ const MenuItem = ({
         " "
       )}`
     );
+    closeMenu && closeMenu();
   };
   const [show, setShow] = useState<boolean>(false);
   useEffect(() => {
